@@ -1,0 +1,9 @@
+{
+  "name": "clean-fetch",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/tranvansang/clean-fetch",
+  "author": "Sang Tran <t@sang.jp>",
+  "license": "MIT",
+  "packageManager": "yarn@3.6.1"
+}
