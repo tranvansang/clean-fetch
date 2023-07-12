@@ -10,14 +10,14 @@ let errorHandler = async (res: Response) => {
 export function setFetchErrorHandler(handler: (res: Response) => any) {
 	errorHandler = handler
 }
-export async function fetchJson<T>(url, init): Promise<T> {
-	const res = await fetch(url, init)
-	if (!res.ok) return await errorHandler(res)
+export async function fetchJson<T>(input: RequestInfo | URL, init?: RequestInit): Promise<T> {
+	const res = await fetch(input, init)
+	if (!res.ok) return await errorHandler(res) as T
 	else return await res.json() as T
 }
 
-export async function fetchText(url, init) {
-	const res = await fetch(url, init)
-	if (!res.ok) return await errorHandler(res)
+export async function fetchText(input: RequestInfo | URL, init?: RequestInit) {
+	const res = await fetch(input, init)
+	if (!res.ok) return await errorHandler(res) as string
 	else return await res.text()
 }

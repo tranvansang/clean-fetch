@@ -13,12 +13,13 @@ This library is client side only, it does not support server side rendering.
 
 ### Hook Usage
 ```tsx
-import {useFetch, useFetchAlways} from 'clean-fetch'
+import {useFetch} from 'clean-fetch'
 ```
 
-- Argument: Both functions take only one argument, a function that returns data or a promise which resolves to the data.
-- Return: Both functions return `{data, error, reload}` with:
+- Argument: `useFetch` takes only one argument, a function that returns a promise which resolves to the data. Note: the library does not support if the function return the data synchronously.
+- Returns `{data, error, reload}` where:
 	- If `data` and `error` are both `undefined`, it means the data is loading or not yet fetched (initial render).
+  They are never both not `undefined`.
 	- `reload`: a function that takes no argument, reloads the data and returns what the function passed to the hook returns.
 
 - `useFetch`: only fetches data in the first return. If you want to refetch the data, you need to manually call `reload()`.
@@ -28,14 +29,8 @@ const {data, error, reload} = useFetch(() => fetchData(params))
 useEffect(() => void reload(), [params])
 ```
 
-- `useFetchAlways`: always fetches data when the component is rendered.
-To use this hook, you need to memorize the function passed to the hook, otherwise it will be called on every render.
-```typescript
-const {data, error, reload} = useFetch(useCallback(() => fetchData(params), [params]))
-```
-
 #### Note
-- `useHook<T>()` and `useFetchAlways<T>()` have a generic type `T` which is the type of the data returned by the function passed to the hook.
+- `useHook<T>()` has a generic type `T` which is the type of the data returned by the function passed to the hook.
 - When calling `reload()`, `error` and `data` are immediately set to `undefined` (via `setState`) and the data is refetched.
 - If you want to keep the last data while refetching, for example, to keep the last page of a paginated list until the new page is fetched, you can create a custom hook that retains the last data while fetching the new data.
 ```typescript
@@ -71,19 +66,22 @@ return error // has error
 			? <Loading/>
 			: null
 ```
+- For now, both `data` and `Error`'s types are defined. We will improve the type definition in the future.
 
 ### Component Usage
 ```tsx
-import {Fetch, FetchAlways} from 'clean-fetch'
+import {Fetch} from 'clean-fetch'
+
+return <Fetch fetch={() => fetchJson('/user/info')}>
+	{(data, reload) => <Data data={data} reload={reload}/>}
+</Fetch>
 ```
-Both two exported components take 3 props:
+`Fetch` is a React component which takes 3 props:
 - (Optional) `Fallback`: a component that takes an optional `error` prop and a `reload` prop which is a function that reloads the data.
 If `error` is undefined, it means the data is loading.
 By default, it is a component which returns `null`.
-- `fetch`: a function that returns data or a promise which resolves to the data.
-- `render`: a function that takes 2 arguments: the data and a `reload` function and returns a ReactNode.
-
-The difference between `Fetch` and `FetchAlways` is that they use `useFetch` and `useFetchAlways`, respectively.
+- `fetch`: a function that returns a promise which resolves to the data.
+- `children`: a function that takes 2 arguments: the data and a `reload` function and returns a ReactNode.
 
 ### Fetch Utilities
 We provide 2 wrappers of browser fetch API: `fetchJson` and `fetchText`.

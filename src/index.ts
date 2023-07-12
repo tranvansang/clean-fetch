@@ -1,3 +1,5 @@
-export {FetchAlways, Fetch} from './Components'
-export {useFetch, useFetchAlways} from './hooks'
+import Fetch from './Fetch'
+
+export {useFetch} from './hooks'
+export {Fetch}
 export {fetchJson, fetchText, setFetchErrorHandler} from './fetchLib'
