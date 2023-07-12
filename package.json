@@ -5,5 +5,13 @@
   "repository": "https://github.com/tranvansang/clean-fetch",
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
-  "packageManager": "yarn@3.6.1"
+  "packageManager": "yarn@3.6.1",
+  "devDependencies": {
+    "@types/react": "^18.2.14",
+    "react": "^18.2.0",
+    "typescript": "^5.1.6"
+  },
+  "peerDependencies": {
+    "react": "*"
+  }
 }
