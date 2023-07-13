@@ -27,8 +27,10 @@ export function useFetch<T>(fetchFn: () => Promise<T>) {
 		return promise
 	}, [fetchFn])
 
-	useEffect(() => void load(), [])
-	const reload = useCallback(() => load(), [load])
+	const loadRef = useRef(load)
+	loadRef.current = load
+	const reload = useCallback(() => loadRef.current(), [])
+	useEffect(() => void loadRef.current(), [])
 
 	return {data: data as T, error: error as Error, load, reload}
 }

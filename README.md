@@ -21,12 +21,14 @@ import {useFetch} from 'clean-fetch'
 	- If `data` and `error` are both `undefined`, it means the data is loading or not yet fetched (initial render).
   They are never both not `undefined`.
 	- `reload`: a function that takes no argument, reloads the data and returns what the function passed to the hook returns.
+The `reload` function reference never changes, you can safely pass it to the independent array of `useEffect` without causing additional renders.
+For multiple renders, `render` uses the latest function passed to the hook.
 
 - `useFetch`: only fetches data in the first return. If you want to refetch the data, you need to manually call `reload()`.
 ```typescript
 const {data, error, reload} = useFetch(() => fetchData(params))
 // when params changes, you need to manually call reload()
-useEffect(() => void reload(), [params])
+useEffect(() => void reload(), [params, reload]) // reload reference never changes
 ```
 
 #### Note
