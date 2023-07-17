@@ -5,6 +5,7 @@ let errorHandler = async (res: Response) => {
 		json = JSON.parse(text)
 	} catch {}
 	if (json?.error) throw new Error(json.error)
+	if (json?.message) throw new Error(json.message)
 	throw new Error(text)
 }
 export function setFetchErrorHandler(handler: (res: Response) => any) {

@@ -94,6 +94,6 @@ import {fetchJson, fetchText, setFetchErrorHandler} from 'clean-fetch'
 - `fetchJson` and `fetchText` takes the same arguments as browser fetch API.
 The former returns a promise which resolves to the JSON data, the latter returns a promise which resolves to the text.
 If the response is not ok, the promise will be rejected with an Error object whose `message` is interpreted as below:
-  - If the response is JSON and the JSON object has a truthy `message` property, the `message` property will be used as the error message.
+  - If the response is JSON and the JSON object has a truthy `error` or `message` property, the `error` (or `message`) property will be used as the error message.
   - Otherwise, the response status text will be used as the error message.
 The error handler can be set via `setFetchErrorHandler`, a function that takes a function that takes the response object and should throw an Error object.
