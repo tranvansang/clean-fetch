@@ -1,5 +1,5 @@
 import type {ComponentType, ReactNode} from 'react'
-import {useFetch} from './hooks'
+import {useFetch} from './hooks.js'
 
 function EmptyFallback() {
 	return null

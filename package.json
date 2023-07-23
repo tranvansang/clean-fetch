@@ -1,6 +1,6 @@
 {
   "name": "clean-fetch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "cjs/index.js",
   "repository": "https://github.com/tranvansang/clean-fetch",
   "author": "Sang Tran <t@sang.jp>",

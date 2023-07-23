@@ -1,5 +1,5 @@
-import Fetch from './Fetch'
+import Fetch from './Fetch.js'
 
-export {useFetch} from './hooks'
+export {useFetch} from './hooks.js'
 export {Fetch}
-export {fetchJson, fetchText, setFetchErrorHandler} from './fetchLib'
+export {fetchJson, fetchText, setFetchErrorHandler} from './fetchLib.js'
