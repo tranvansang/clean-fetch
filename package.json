@@ -1,8 +1,7 @@
 {
   "name": "clean-fetch",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "cjs/index.js",
-  "module": "esm/index.js",
   "repository": "https://github.com/tranvansang/clean-fetch",
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
@@ -18,8 +17,7 @@
     }
   },
   "scripts": {
-    "build": "rm -rf cjs esm && yarn tsc --project tsconfigCJS.json && (yarn tsc --project tsconfigESM.json || true)",
-    "prepublish": "yarn build"
+    "prepublish": "./compile.sh"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
