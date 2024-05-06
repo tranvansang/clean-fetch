@@ -20,7 +20,7 @@ export type State<T> = {
 export function useFetch<T>(
 	fetchFn: () => Promise<T> | T, // never return undefined
 	getInitial?: () => T | undefined // may throw an error
-): State<T> & {reload(): Promise<T>} {
+): State<T> & {reload(this: void): Promise<T>} {
 	const unmountedRef = useRef(false)
 	useEffect(() => {
 		unmountedRef.current = false

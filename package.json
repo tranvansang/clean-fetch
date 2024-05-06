@@ -1,6 +1,6 @@
 {
   "name": "clean-fetch",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "cjs/index.js",
   "repository": {
     "type": "git",
