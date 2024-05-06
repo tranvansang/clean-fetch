@@ -2,10 +2,12 @@
   "name": "clean-fetch",
   "version": "0.0.5",
   "main": "cjs/index.js",
-  "repository": "https://github.com/tranvansang/clean-fetch",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tranvansang/clean-fetch.git"
+  },
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
-  "packageManager": "yarn@3.6.1",
   "files": [
     "cjs",
     "esm"
@@ -17,14 +19,13 @@
     }
   },
   "scripts": {
-    "prepublish": "./compile.sh"
+    "prepublishOnly": "./compile.sh"
   },
   "devDependencies": {
-    "@types/react": "^18.2.14",
-    "react": "^18.2.0",
-    "typescript": "^5.1.6"
+    "typescript": "*"
   },
   "peerDependencies": {
+    "@types/react": "*",
     "react": "*"
   }
 }
