@@ -20,8 +20,9 @@ export default function Fetch<T>(
 }
 ) {
 	const {reload, data, error} = useFetch(fetch)
+	const F = Fallback as any
 	return data === undefined
-		? <Fallback reload={reload} error={error}/>
+		? <F reload={reload} error={error}/>
 		: children(data, reload)
 }
 Fetch.displayName = 'Fetch'
