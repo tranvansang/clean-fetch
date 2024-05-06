@@ -86,16 +86,3 @@ If `error` is `undefined`, it means the data is loading.
 By default, it is a component which returns `null`.
 - `fetch`: a function that returns a promise which resolves to the data.
 - `children`: a function that takes 2 arguments: the data and a `reload` function and returns a ReactNode.
-
-### Fetch Utilities
-We provide 2 wrappers of browser fetch API: `fetchJson` and `fetchText`.
-```typescript
-import {fetchJson, fetchText, setFetchErrorHandler} from 'clean-fetch'
-```
-
-- `fetchJson` and `fetchText` takes the same arguments as browser fetch API.
-The former returns a promise which resolves to the JSON data, the latter returns a promise which resolves to the text.
-If the response does not return ok status (2xx), the promise will be rejected with an Error object whose `message` is interpreted as below:
-  - If the response is JSON and the JSON object has a truthy `error` or `message` property, the `error` (or `message`) property will be used as the error message.
-  - Otherwise, the response body will be used as the error message.
-The error handler can be set via `setFetchErrorHandler`, a function that takes a function that takes the response object and should throw an Error object.
