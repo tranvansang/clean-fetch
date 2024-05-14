@@ -1,6 +1,6 @@
 {
   "name": "clean-fetch",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "main": "cjs/index.js",
   "repository": {
     "type": "git",
@@ -16,6 +16,14 @@
     ".": {
       "import": "./esm/index.js",
       "require": "./cjs/index.js"
+    },
+    "./Fetch": {
+      "import": "./esm/Fetch.js",
+      "require": "./cjs/Fetch.js"
+    },
+    "./hooks": {
+      "import": "./esm/hooks.js",
+      "require": "./cjs/hooks.js"
     }
   },
   "scripts": {
