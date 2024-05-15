@@ -25,7 +25,7 @@ export function useFetch<T>(
 	useEffect(() => {
 		unmountedRef.current = false
 		return () => void (unmountedRef.current = true)
-	})
+	}, [])
 
 	const [state, setState] = useState<State<T>>(() => {
 		if (!getInitial) return {}
