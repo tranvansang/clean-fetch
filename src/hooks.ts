@@ -1,4 +1,5 @@
 import {useCallback, useEffect, useRef, useState} from 'react'
+
 export type State<T> = {
 	data: T
 	error?: undefined
@@ -21,12 +22,6 @@ export function useFetch<T>(
 	fetchFn: () => Promise<T> | T, // never return undefined
 	getInitial?: () => T | undefined // may throw an error
 ): State<T> & {reload(this: void): Promise<T>} {
-	const unmountedRef = useRef(false)
-	useEffect(() => {
-		unmountedRef.current = false
-		return () => void (unmountedRef.current = true)
-	}, [])
-
 	const [state, setState] = useState<State<T>>(() => {
 		if (!getInitial) return {}
 		try {
@@ -39,12 +34,8 @@ export function useFetch<T>(
 	async function load(){
 		setState({})
 		const promise = (async () => fetchFn())() // Promise.try proposal
-		try {
-			const data = await promise
-			if (!unmountedRef.current) setState({data})
-		} catch (error) {
-			if (!unmountedRef.current) setState({error})
-		}
+		try {setState({data: await promise}) // https://github.com/reactwg/react-18/discussions/82
+		} catch (error) {setState({error})}
 		return promise
 	}
 
