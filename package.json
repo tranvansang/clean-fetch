@@ -1,7 +1,7 @@
 {
   "name": "clean-fetch",
-  "version": "0.0.10",
-  "main": "cjs/index.js",
+  "version": "0.1.0",
+  "main": "cjs/index.cjs",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/tranvansang/clean-fetch.git"
@@ -9,31 +9,18 @@
   "author": "Sang Tran <t@sang.jp>",
   "license": "MIT",
   "files": [
-    "cjs",
-    "esm"
+    "index.cjs",
+    "index.d.ts",
+    "index.mjs"
   ],
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "require": "./cjs/index.js"
-    },
-    "./Fetch": {
-      "import": "./esm/Fetch.js",
-      "require": "./cjs/Fetch.js"
-    },
-    "./hooks": {
-      "import": "./esm/hooks.js",
-      "require": "./cjs/hooks.js"
+      "require": "./index.cjs",
+      "import": "./index.mjs",
+      "types": "./index.d.ts"
     }
   },
-  "scripts": {
-    "prepublishOnly": "./compile.sh"
-  },
-  "devDependencies": {
-    "typescript": "*"
-  },
   "peerDependencies": {
-    "@types/react": "*",
     "react": "*"
   }
 }

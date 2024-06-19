@@ -18,7 +18,7 @@ export type State<T> = {
  * data and error never be defined at the same time
  * reload(): returns the result of fetchFn()
  */
-export function useFetch<T>(
+export default function useFetch<T>(
 	fetchFn: () => Promise<T> | T, // never return undefined
 	getInitial?: () => T | undefined // may throw an error
 ): State<T> & {reload(this: void): Promise<T>} {
