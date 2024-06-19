@@ -5,14 +5,14 @@
 ## Installation
 
 ```bash
-yarn add clean-fetch
+npm i clean-fetch
 ```
 
 ## Usage
 
 ### Hook Usage
 ```tsx
-import {useFetch} from 'clean-fetch'
+import useFetch from 'clean-fetch'
 ```
 
 - Signature: `useFetch<T>(fetchfn, getInitial)`.
@@ -36,7 +36,7 @@ useEffect(() => void reload(), [params, reload]) // `reload` value never changes
 ```
 
 #### Note
-- `useHook<T>()` has a generic type `T` which is the type of the data returned by the function passed to the hook.
+- `useFetch<T>()` has a generic type `T` which is the type of the data returned by the function passed to the hook.
 - When calling `reload()`, `error` and `data` are immediately/synchronously set to `undefined` (via `setState`) and the data is refetched.
 - If you want to keep the last data while refetching, for example, to keep the last page of a paginated list until the new page is fetched, you can create a custom hook that retains the last data while fetching the new data.
 ```typescript
@@ -75,18 +75,3 @@ return error // has error
 ```
 This `useTimedOut` hook is available in [misc-hooks](https://www.npmjs.com/package/misc-hooks) package.
 - For now, both `data` and `Error`'s types are defined. We will improve the type definition in the future.
-
-### Component Usage
-```tsx
-import {Fetch} from 'clean-fetch'
-
-return <Fetch fetch={() => fetchJson('/user/info')}>
-	{(data, reload) => <Data data={data} reload={reload}/>}
-</Fetch>
-```
-`Fetch` is a React component which takes 3 props:
-- (Optional) `Fallback`: a component that takes an optional `error` prop and a `reload` prop which is a function that reloads the data.
-If `error` is `undefined`, it means the data is loading.
-By default, it is a component which returns `null`.
-- `fetch`: a function that returns a promise which resolves to the data.
-- `children`: a function that takes 2 arguments: the data and a `reload` function and returns a ReactNode.
