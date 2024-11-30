@@ -1,3 +1,6 @@
+# Deprecation notice
+
+This library is deprecated. Please use `useAsync()` from [misc-hooks](https://www.npmjs.com/package/misc-hooks) instead.
 # Clean Fetch
 
 ## Simple, Unopinionated, Just Working - React Data Fetching Library
